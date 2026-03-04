@@ -7,294 +7,423 @@
   <meta name="description" content="ASC Landscaping Service LLC — lawn care, mowing, mulch & pinestraw, cleanups, and more in Gainesville & surrounding areas. Free estimates." />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg:#0b1220;
+      --panel:#0f1a30;
+      --panel2:#0c162a;
+      --text:#e9eefc;
+      --muted:#b7c4e6;
+      --brand:#22c55e;
+      --brand2:#16a34a;
+      --line:rgba(255,255,255,.10);
+      --shadow: 0 20px 60px rgba(0,0,0,.35);
+      --radius: 18px;
+      --max: 1100px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      color:var(--text);
+      background:
+        radial-gradient(900px 500px at 10% 0%, rgba(34,197,94,.22), transparent 60%),
+        radial-gradient(900px 500px at 90% 10%, rgba(34,197,94,.14), transparent 55%),
+        linear-gradient(180deg, #070b14 0%, var(--bg) 35%, #070b14 100%);
+      line-height:1.5;
+    }
+    a{color:inherit}
+    .container{max-width:var(--max); margin:0 auto; padding:0 18px}
+    .topbar{
+      position:sticky; top:0; z-index:50;
+      backdrop-filter: blur(10px);
+      background: rgba(7,11,20,.65);
+      border-bottom:1px solid var(--line);
+    }
+    .topbar-inner{
+      display:flex; align-items:center; justify-content:space-between;
+      padding:14px 0;
+      gap:14px;
+    }
+    .brand{
+      display:flex; align-items:center; gap:12px;
+      text-decoration:none;
+    }
+    .logo{
+      width:42px; height:42px; border-radius:12px;
+      background: linear-gradient(135deg, rgba(34,197,94,.25), rgba(34,197,94,.02));
+      border:1px solid rgba(34,197,94,.35);
+      display:grid; place-items:center;
+      box-shadow: 0 10px 30px rgba(34,197,94,.12);
+      font-weight:800;
+      color:#d8ffe7;
+      letter-spacing:.5px;
+    }
+    .brand-title{display:flex; flex-direction:column}
+    .brand-title strong{font-size:14px}
+    .brand-title span{font-size:12px; color:var(--muted)}
+    nav{
+      display:flex; gap:14px; align-items:center; flex-wrap:wrap;
+    }
+    nav a{
+      text-decoration:none;
+      color:var(--muted);
+      font-size:13px;
+      padding:8px 10px;
+      border-radius:12px;
+    }
+    nav a:hover{background: rgba(255,255,255,.06); color:var(--text)}
+    .cta-row{display:flex; gap:10px; align-items:center; flex-wrap:wrap}
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center; gap:10px;
+      border-radius:14px;
+      padding:10px 14px;
+      text-decoration:none;
+      font-weight:700;
+      font-size:13px;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.04);
+    }
+    .btn:hover{transform: translateY(-1px); background: rgba(255,255,255,.06)}
+    .btn-primary{
+      background: linear-gradient(135deg, var(--brand), var(--brand2));
+      color:#07110b;
+      border:1px solid rgba(255,255,255,.08);
+      box-shadow: 0 16px 40px rgba(34,197,94,.18);
+    }
+    .btn-primary:hover{filter:brightness(1.05)}
+    .hero{
+      padding:58px 0 22px;
+    }
+    .hero-grid{
+      display:grid;
+      grid-template-columns: 1.25fr .75fr;
+      gap:22px;
+      align-items:stretch;
+    }
+    @media (max-width: 920px){
+      .hero-grid{grid-template-columns:1fr}
+      nav{display:none}
+    }
+    .card{
+      background: linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
+      border:1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+    .hero-left{padding:26px}
+    .kicker{
+      display:inline-flex; gap:10px; align-items:center;
+      padding:8px 12px;
+      border-radius:999px;
+      border:1px solid rgba(34,197,94,.28);
+      background: rgba(34,197,94,.10);
+      color:#c9ffe0;
+      font-weight:700;
+      font-size:12px;
+    }
+    h1{
+      margin:14px 0 10px;
+      font-size:44px;
+      line-height:1.05;
+      letter-spacing:-1px;
+    }
+    @media (max-width: 520px){h1{font-size:36px}}
+    .sub{
+      margin:0 0 18px;
+      color:var(--muted);
+      font-size:15px;
+      max-width: 62ch;
+    }
+    .badges{
+      display:flex; gap:10px; flex-wrap:wrap;
+      margin:14px 0 18px;
+    }
+    .pill{
+      font-size:12px;
+      color:#d7e2ff;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.03);
+      padding:8px 10px;
+      border-radius:999px;
+    }
+    .hero-actions{
+      display:flex; gap:12px; flex-wrap:wrap;
+      margin-top:10px;
+    }
+    .hero-right{
+      padding:18px;
+      display:flex;
+      flex-direction:column;
+      gap:12px;
+    }
+    .mini{
+      padding:16px;
+      background: rgba(0,0,0,.18);
+      border:1px solid var(--line);
+      border-radius: 16px;
+    }
+    .mini h3{margin:0 0 8px; font-size:14px}
+    .mini p{margin:0; color:var(--muted); font-size:13px}
+    .contact-line{display:flex; gap:10px; flex-wrap:wrap; margin-top:12px}
+    .contact-line a{
+      font-size:13px;
+      color:#e9eefc;
+      text-decoration:none;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.03);
+      padding:9px 12px;
+      border-radius: 14px;
+    }
+    .contact-line a:hover{background: rgba(255,255,255,.06)}
+    section{padding:26px 0}
+    .section-title{
+      display:flex; align-items:flex-end; justify-content:space-between;
+      gap:12px; flex-wrap:wrap;
+      margin-bottom:14px;
+    }
+    .section-title h2{margin:0; font-size:22px}
+    .section-title p{margin:0; color:var(--muted); font-size:13px}
+    .grid{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap:14px;
+    }
+    @media (max-width: 920px){.grid{grid-template-columns:1fr 1fr}}
+    @media (max-width: 560px){.grid{grid-template-columns:1fr}}
+    .service{
+      padding:16px;
+      border-radius: 16px;
+      border:1px solid var(--line);
+      background: linear-gradient(180deg, rgba(15,26,48,.85), rgba(12,22,42,.65));
+      min-height: 120px;
+    }
+    .service strong{display:block; margin-bottom:6px}
+    .service span{color:var(--muted); font-size:13px}
+    .two-col{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:14px;
+      align-items:stretch;
+    }
+    @media (max-width: 920px){.two-col{grid-template-columns:1fr}}
+    .why{padding:18px}
+    ul.clean{margin:10px 0 0; padding:0; list-style:none}
+    ul.clean li{
+      padding:10px 0;
+      border-top:1px solid var(--line);
+      color:var(--muted);
+      font-size:13px;
+      display:flex; gap:10px;
+    }
+    ul.clean li:first-child{border-top:none}
+    .dot{
+      width:10px; height:10px; border-radius:999px; margin-top:6px;
+      background: rgba(34,197,94,.9);
+      box-shadow: 0 0 0 4px rgba(34,197,94,.12);
+      flex: 0 0 auto;
+    }
+    .footer{
+      padding:26px 0 44px;
+      color: rgba(255,255,255,.55);
+      font-size:12px;
+      border-top:1px solid var(--line);
+      margin-top:22px;
+    }
+    .small{font-size:12px; color:rgba(255,255,255,.55)}
+  </style>
 </head>
+
 <body>
-  <header class="site-header">
-    <div class="container header-inner">
-      <div class="brand">
-        <div class="brand-mark" aria-hidden="true">ASC</div>
-        <div>
-          <div class="brand-name">ASC Landscaping Service LLC</div>
-          <div class="brand-sub">Gainesville, GA • Serving surrounding areas</div>
+  <div class="topbar">
+    <div class="container">
+      <div class="topbar-inner">
+        <a class="brand" href="#top">
+          <div class="logo">ASC</div>
+          <div class="brand-title">
+            <strong>ASC Landscaping Service LLC</strong>
+            <span>Gainesville, GA • Serving surrounding areas</span>
+          </div>
+        </a>
+
+        <nav>
+          <a href="#services">Services</a>
+          <a href="#why">Why Us</a>
+          <a href="#contact">Contact</a>
+        </nav>
+
+        <div class="cta-row">
+          <a class="btn" href="tel:6789789829">Call 678-978-9829</a>
+          <a class="btn btn-primary" href="#contact">Free Estimate</a>
         </div>
       </div>
-
-      <nav class="nav">
-        <a href="#services">Services</a>
-        <a href="#why">Why Us</a>
-        <a href="#contact">Contact</a>
-      </nav>
-
-      <div class="header-cta">
-        <a class="btn btn-ghost" href="tel:6789789829">Call 678-978-9829</a>
-        <a class="btn btn-primary" href="#contact">Free Estimate</a>
-      </div>
     </div>
-  </header>
+  </div>
 
-  <main>
-    <section class="hero">
-      <div class="container hero-inner">
-        <div class="hero-copy">
-          <div class="badge-row">
-            <span class="pill">✅ 100% Satisfaction Guarantee</span>
-            <span class="pill">💸 10% OFF (limited-time)</span>
-          </div>
-
+  <main id="top" class="container">
+    <div class="hero">
+      <div class="hero-grid">
+        <div class="card hero-left">
+          <div class="kicker">✅ 100% Satisfaction Guaranteed • 🔥 10% OFF (limited-time)</div>
           <h1>Transform your yard into a clean, sharp outdoor space.</h1>
-          <p class="lead">
+          <p class="sub">
             From routine mowing to mulch & pine straw, we help homeowners in Gainesville & nearby areas keep their property looking top-tier.
           </p>
 
-          <div class="hero-actions">
-            <a class="btn btn-primary" href="tel:6789789829">Call for a Free Quote</a>
-            <a class="btn btn-ghost" href="sms:6789789829">Text Us</a>
+          <div class="badges">
+            <div class="pill">Fast & reliable</div>
+            <div class="pill">Quality work — serious clients</div>
+            <div class="pill">Projects start at $100+</div>
+            <div class="pill">Free estimates</div>
           </div>
 
-          <div class="hero-meta">
-            <div class="meta-card">
-              <div class="meta-title">Fast & reliable</div>
-              <div class="meta-text">We show up and get it done right.</div>
-            </div>
-            <div class="meta-card">
-              <div class="meta-title">Projects start at $100+</div>
-              <div class="meta-text">Quality work for serious clients.</div>
-            </div>
-            <div class="meta-card">
-              <div class="meta-title">Free estimates</div>
-              <div class="meta-text">No pressure, just a fair quote.</div>
-            </div>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="tel:6789789829">📞 Call for a Free Quote</a>
+            <a class="btn" href="sms:6789789829">💬 Text Us</a>
+            <a class="btn" href="#services">See Services</a>
           </div>
+
+          <p class="small" style="margin-top:14px;">
+            No pressure — just a fair quote. We’ll respond ASAP.
+          </p>
         </div>
 
-        <div class="hero-card">
-          <div class="hero-card-top">
-            <div class="hero-card-title">Quick Contact</div>
-            <div class="hero-card-sub">Call or text anytime</div>
+        <div class="card hero-right">
+          <div class="mini">
+            <h3>Quick Contact</h3>
+            <p>Call or text anytime:</p>
+            <div class="contact-line">
+              <a href="tel:6789789829">📱 678-978-9829</a>
+              <a href="tel:4709413088">☎️ 470-941-3088</a>
+            </div>
           </div>
 
-          <div class="contact-list">
-            <a class="contact-item" href="tel:6789789829">
-              <span class="icon" aria-hidden="true">📞</span>
-              <span>
-                <span class="label">Phone</span>
-                <span class="value">678-978-9829</span>
-              </span>
-            </a>
-            <a class="contact-item" href="tel:4709413088">
-              <span class="icon" aria-hidden="true">📞</span>
-              <span>
-                <span class="label">Phone (alt)</span>
-                <span class="value">470-941-3088</span>
-              </span>
-            </a>
-            <a class="contact-item" target="_blank" rel="noopener" href="https://www.instagram.com/sanchezlandscaping2/">
-              <span class="icon" aria-hidden="true">📸</span>
-              <span>
-                <span class="label">Instagram</span>
-                <span class="value">@sanchezlandscaping2</span>
-              </span>
-            </a>
-            <a class="contact-item" target="_blank" rel="noopener" href="https://www.tiktok.com/@asclandscapingservicellc">
-              <span class="icon" aria-hidden="true">🎵</span>
-              <span>
-                <span class="label">TikTok</span>
-                <span class="value">@asclandscapingservicellc</span>
-              </span>
-            </a>
+          <div class="mini">
+            <h3>Social</h3>
+            <p>
+              Facebook: ASC Sanchez<br>
+              Instagram: @sanchezlandscaping2<br>
+              TikTok: @asclandscapingservicellc
+            </p>
           </div>
 
-          <div class="hero-card-bottom">
-            <a class="btn btn-primary btn-block" href="#contact">Request Free Estimate</a>
-            <p class="fineprint">We’ll respond ASAP.</p>
+          <div class="mini">
+            <h3>Service Area</h3>
+            <p>Gainesville & surrounding areas.</p>
           </div>
         </div>
       </div>
-    </section>
+    </div>
 
-    <section id="services" class="section">
-      <div class="container">
-        <div class="section-head">
+    <section id="services">
+      <div class="section-title">
+        <div>
           <h2>Services</h2>
           <p>Pick what you need — maintenance or a full cleanup.</p>
         </div>
+      </div>
 
-        <div class="grid">
-          <div class="card">
-            <h3>Landscaping</h3>
-            <p>Clean edging, shaping, beds, and overall curb appeal.</p>
-          </div>
-          <div class="card">
-            <h3>Lawn Care</h3>
-            <p>Regular maintenance to keep your yard healthy and sharp.</p>
-          </div>
-          <div class="card">
-            <h3>Mulch & Pinestraw</h3>
-            <p>Fresh installs that make your beds look brand new.</p>
-          </div>
-          <div class="card">
-            <h3>Mowing</h3>
-            <p>Consistent cuts with clean lines and a professional finish.</p>
-          </div>
-          <div class="card">
-            <h3>Core Aeration</h3>
-            <p>Improve soil airflow and help grass grow stronger.</p>
-          </div>
-          <div class="card">
-            <h3>Fertilizer</h3>
-            <p>Feed your lawn for color, thickness, and durability.</p>
-          </div>
-          <div class="card">
-            <h3>Over Seeding</h3>
-            <p>Fill thin spots and boost lawn density over time.</p>
-          </div>
-          <div class="card">
-            <h3>Weed Control</h3>
-            <p>Reduce weeds and protect the lawn you’re building.</p>
-          </div>
+      <div class="grid">
+        <div class="service">
+          <strong>🌱 Lawn mowing & maintenance</strong>
+          <span>Consistent cuts with clean lines and a professional finish.</span>
+        </div>
+        <div class="service">
+          <strong>🌳 Tree removal & pruning</strong>
+          <span>Trim, shape, and remove problem limbs safely.</span>
+        </div>
+        <div class="service">
+          <strong>🌿 Hedge & shrub trimming</strong>
+          <span>Clean edges, shaping, beds, and curb appeal.</span>
+        </div>
+        <div class="service">
+          <strong>🍂 Leaf removal & garden cleanup</strong>
+          <span>Seasonal cleanup to keep your yard looking sharp.</span>
+        </div>
+        <div class="service">
+          <strong>🪵 Mulch & stone installation</strong>
+          <span>Fresh installs that make your beds look brand new.</span>
+        </div>
+        <div class="service">
+          <strong>🌸 Seasonal planting & flower beds</strong>
+          <span>Planting + maintenance for clean, colorful beds.</span>
+        </div>
+        <div class="service">
+          <strong>🌾 Lawn installation & planting</strong>
+          <span>New grass installs and planting projects.</span>
+        </div>
+        <div class="service">
+          <strong>🧼 Pressure washing & deep cleanups</strong>
+          <span>Driveways, patios, and more — refresh the whole look.</span>
+        </div>
+        <div class="service">
+          <strong>🧪 Fertilizer / Overseeding / Weed control</strong>
+          <span>Improve growth, strengthen grass, and keep it clean.</span>
         </div>
       </div>
     </section>
 
-    <section id="why" class="section section-alt">
-      <div class="container">
-        <div class="section-head">
-          <h2>Why ASC Landscaping?</h2>
-          <p>Quality work, clear communication, guaranteed results.</p>
-        </div>
-
-        <div class="split">
-          <div class="card big">
-            <h3>Professional team</h3>
-            <ul class="checklist">
-              <li>✅ We get it done right the first time</li>
-              <li>✅ Fast & reliable scheduling</li>
-              <li>✅ Clean finish — not “good enough”</li>
-              <li>✅ Free estimates for serious projects</li>
-            </ul>
-          </div>
-
-          <div class="card big">
-            <h3>Ready to start?</h3>
-            <p>Call or text and we’ll set you up with a free quote.</p>
-            <div class="dual">
-              <a class="btn btn-primary" href="tel:6789789829">Call Now</a>
-              <a class="btn btn-ghost" href="sms:6789789829">Text Now</a>
+    <section id="why">
+      <div class="two-col">
+        <div class="card why">
+          <div class="section-title">
+            <div>
+              <h2>Why ASC Landscaping?</h2>
+              <p>We show up. We do it right. Period.</p>
             </div>
-            <p class="fineprint">Projects starting at $100+ • Serving Gainesville & surrounding areas</p>
           </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="contact" class="section">
-      <div class="container">
-        <div class="section-head">
-          <h2>Free Estimate</h2>
-          <p>Send a quick message — we’ll follow up.</p>
+          <ul class="clean">
+            <li><span class="dot"></span>Professional team — done right the first time</li>
+            <li><span class="dot"></span>Fast, reliable, and guaranteed results</li>
+            <li><span class="dot"></span>Perfect for homeowners who value quality</li>
+            <li><span class="dot"></span>Free estimates — no pressure</li>
+          </ul>
         </div>
 
-        <div class="contact-grid">
-          <form class="card form" id="estimateForm">
-            <label>
-              Name
-              <input required name="name" placeholder="Your name" />
-            </label>
-            <label>
-              Phone
-              <input required name="phone" placeholder="Your phone number" />
-            </label>
-            <label>
-              What do you need?
-              <select required name="service">
-                <option value="">Select a service</option>
-                <option>Landscaping</option>
-                <option>Lawn Care</option>
-                <option>Mulch & Pinestraw</option>
-                <option>Mowing</option>
-                <option>Core Aeration</option>
-                <option>Fertilizer</option>
-                <option>Over Seeding</option>
-                <option>Weed Control</option>
-              </select>
-            </label>
-            <label>
-              Notes (optional)
-              <textarea name="notes" rows="4" placeholder="Address / yard size / any details"></textarea>
-            </label>
+        <div class="card why" id="contact">
+          <div class="section-title">
+            <div>
+              <h2>Get a Free Estimate</h2>
+              <p>Call or text — quickest response.</p>
+            </div>
+          </div>
 
-            <button class="btn btn-primary" type="submit">Text This Request</button>
-            <p class="fineprint">
-              This will open your texting app with the message pre-filled (no login needed).
+          <div class="contact-line">
+            <a class="btn btn-primary" href="tel:6789789829">📞 Call 678-978-9829</a>
+            <a class="btn" href="sms:6789789829">💬 Text 678-978-9829</a>
+            <a class="btn" href="tel:4709413088">☎️ Call 470-941-3088</a>
+          </div>
+
+          <div style="height:12px"></div>
+
+          <div class="mini" style="margin-top:10px">
+            <h3>Social Links</h3>
+            <p>
+              Instagram: <a href="#" onclick="alert('Replace this with your real IG link if you want.'); return false;">@sanchezlandscaping2</a><br>
+              TikTok: <a href="#" onclick="alert('Replace this with your real TikTok link if you want.'); return false;">@asclandscapingservicellc</a><br>
+              Facebook: ASC Sanchez
             </p>
-          </form>
-
-          <div class="card">
-            <h3>Contact</h3>
-            <p class="muted">Call, text, or follow us:</p>
-
-            <div class="contact-list">
-              <a class="contact-item" href="tel:6789789829">
-                <span class="icon" aria-hidden="true">📞</span>
-                <span>
-                  <span class="label">Phone</span>
-                  <span class="value">678-978-9829</span>
-                </span>
-              </a>
-              <a class="contact-item" href="tel:4709413088">
-                <span class="icon" aria-hidden="true">📞</span>
-                <span>
-                  <span class="label">Phone (alt)</span>
-                  <span class="value">470-941-3088</span>
-                </span>
-              </a>
-              <a class="contact-item" target="_blank" rel="noopener" href="https://www.instagram.com/sanchezlandscaping2/">
-                <span class="icon" aria-hidden="true">📸</span>
-                <span>
-                  <span class="label">Instagram</span>
-                  <span class="value">@sanchezlandscaping2</span>
-                </span>
-              </a>
-              <a class="contact-item" target="_blank" rel="noopener" href="https://www.tiktok.com/@asclandscapingservicellc">
-                <span class="icon" aria-hidden="true">🎵</span>
-                <span>
-                  <span class="label">TikTok</span>
-                  <span class="value">@asclandscapingservicellc</span>
-                </span>
-              </a>
-              <div class="contact-item" role="note" aria-label="Facebook">
-                <span class="icon" aria-hidden="true">📘</span>
-                <span>
-                  <span class="label">Facebook</span>
-                  <span class="value">ASC SANCHEZ</span>
-                </span>
-              </div>
-            </div>
-
-            <div class="divider"></div>
-
-            <p class="muted">
-              Prefer email too? Tell me the exact email address and I’ll add it + make the form email-ready.
+            <p class="small" style="margin-top:10px;">
+              Tip: if you want the social names clickable, tell me the exact profile links and I’ll plug them in.
             </p>
           </div>
         </div>
       </div>
     </section>
-  </main>
 
-  <footer class="footer">
-    <div class="container footer-inner">
-      <div>© <span id="year"></span> ASC Landscaping Service LLC</div>
-      <div class="footer-links">
-        <a href="tel:6789789829">Call</a>
-        <a href="sms:6789789829">Text</a>
-        <a href="#services">Services</a>
+    <div class="footer">
+      <div class="container">
+        © <span id="y"></span> ASC Landscaping Service LLC • Gainesville, GA
+        <div class="small">Built for GitHub Pages (single-file).</div>
       </div>
     </div>
-  </footer>
+  </main>
 
-  <script src="script.js"></script>
+  <script>
+    document.getElementById("y").textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
